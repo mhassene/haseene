@@ -6,7 +6,7 @@
   <title>FileScope Pro — Find Files by Name and Content</title>
   <meta name="description" content="FileScope Pro helps Windows users find files instantly by name, content, creation date, modification date, and extension." />
   <style>
-    /* ===== STYLES IDENTIQUES À L'ORIGINAL (non modifiés) ===== */
+    /* ===== STYLES ORIGINAUX (avec ajustements pour la hero) ===== */
     :root{
       --bg:#0b1220;
       --bg2:#111a2e;
@@ -61,12 +61,18 @@
       border:1px solid rgba(255,255,255,.18);
       box-shadow:none;
     }
+    /* Hero : deux colonnes de même hauteur */
     .hero{
-      padding:72px 0 44px;
+      padding:40px 0 30px;  /* réduit par rapport à 72px 0 44px */
       display:grid;
-      grid-template-columns:1.15fr .85fr;
+      grid-template-columns:1fr 1fr;
       gap:28px;
-      align-items:center;
+      align-items:stretch;  /* pour égaliser les hauteurs */
+    }
+    .hero > div, .french-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .eyebrow{
       color:var(--accent2);
@@ -88,12 +94,23 @@
       margin:0 0 22px;
     }
     .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    /* Badges : conteneur flex avec wrap sur 3 lignes */
     .trust{
-      display:flex; gap:14px; flex-wrap:wrap;
-      margin-top:18px; color:var(--muted); font-size:14px
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:14px
     }
-    .trust span{padding:8px 12px; border:1px solid rgba(255,255,255,.12); border-radius:999px; background:rgba(255,255,255,.03)}
-    /* style pour la colonne droite française (remplace .preview) */
+    .trust span{
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    /* Style pour la colonne droite française */
     .french-block{
       background:linear-gradient(180deg, rgba(18,28,51,.95), rgba(14,22,40,.95));
       border:1px solid var(--line);
@@ -101,13 +118,19 @@
       padding:22px;
       box-shadow:var(--shadow);
       height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
     }
-    .french-block .eyebrow{color:var(--accent2);}
     .french-block .lead{font-size:16px;}
-    .french-block .trust span{background:rgba(255,255,255,.03);}
+    
+    /* Ajustements pour petits écrans : passage en colonne */
+    @media (max-width: 920px){
+      .hero{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+      .trust span{white-space:normal;}
+    }
+    
+    /* ===== RESTE DES STYLES (inchangés) ===== */
     section{padding:44px 0}
     .section-title{
       font-size:32px;
@@ -247,9 +270,9 @@
   </div>
 
   <main class="wrap">
-    <!-- SECTION HERO : BILINGUE (anglais à gauche, français à droite) -->
+    <!-- SECTION HERO : BILINGUE (anglais gauche, français droite) - 3 lignes de badges chacune -->
     <section class="hero">
-      <!-- Colonne gauche : ANGLAIS (original) -->
+      <!-- Colonne gauche : ANGLAIS -->
       <div>
         <div class="eyebrow">Windows Desktop Software</div>
         <h1>Find any file in seconds.</h1>
@@ -261,14 +284,18 @@
           <a class="btn" href="#buy">Buy now</a>
           <a class="btn secondary" href="#features">See features</a>
         </div>
+        <!-- Badges anglais sur 3 lignes (Option 2) -->
         <div class="trust">
-          <span>No internet required</span>
+          <span>Offline search</span>
           <span>Made for Windows</span>
-          <span>Search by name and content</span>
+          <span>Search by name & content</span>
+          <span>Filter by creation date</span>
+          <span>Filter by modification date</span>
+          <span>Multi‑criteria search</span>
         </div>
       </div>
 
-      <!-- Colonne droite : FRANÇAIS (traduction du contenu gauche) -->
+      <!-- Colonne droite : FRANÇAIS -->
       <div class="french-block">
         <div class="eyebrow">Logiciel Windows</div>
         <h1 style="font-size:clamp(32px,5vw,52px);">Trouvez n’importe quel fichier en quelques secondes.</h1>
@@ -280,10 +307,14 @@
           <a class="btn" href="#buy">Acheter</a>
           <a class="btn secondary" href="#features">Voir les fonctionnalités</a>
         </div>
+        <!-- Badges français sur 3 lignes (Option 2) -->
         <div class="trust">
-          <span>Sans connexion Internet</span>
+          <span>Recherche sans internet</span>
           <span>Conçu pour Windows</span>
           <span>Recherche par nom et contenu</span>
+          <span>Recherche par date création</span>
+          <span>Recherche par date modification</span>
+          <span>Recherche combinée</span>
         </div>
       </div>
     </section>
